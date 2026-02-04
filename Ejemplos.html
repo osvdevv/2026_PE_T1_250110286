@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clasificación de Datos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        
+        :root {
+            --bg-body: #fdfcf5;       
+            --text-main: #566573;     
+            --card-bg: #FFFFFF;
+            
+            /* Lavanda (Etiquetas) */
+            --color-qual: #af7ac5;    
+            /* Verde Agua/Menta (Conteo) */
+            --color-disc: #48c9b0;    
+            /* Coral Suave (Medición) */
+            --color-cont: #f0b27a;    
+            /* Azul Cielo (Interfaz) */
+            --color-primary: #85c1e9; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        /* --- HEADER GRADIENTE PASTEL --- */
+        header {
+            /* Gradiente suave: Azul nube a Rosa pálido */
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); 
+            color: #4a5568; /* Texto oscuro porque el fondo es claro */
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 10px 30px rgba(161, 196, 253, 0.3);
+            margin-bottom: 40px;
+        }
+
+        header h1 { 
+            font-weight: 800; 
+            font-size: 2.5rem; 
+            margin-bottom: 10px; 
+            color: #2c3e50; /* Título un poco más oscuro */
+            letter-spacing: -1px;
+        }
+        
+        header p { 
+            font-size: 1.2rem; 
+            color: #5d6d7e;
+            max-width: 600px; 
+            margin: 0 auto; 
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- TARJETAS DE CONTENIDO --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px; /* Bordes más redondeados */
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03); /* Sombra más sutil */
+            border-top: 6px solid #ccc; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        /* Bordes superiores de color */
+        .type-qual { border-color: var(--color-qual); }
+        .type-disc { border-color: var(--color-disc); }
+        .type-cont { border-color: var(--color-cont); }
+
+        .card h2 {
+            font-weight: 800;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Colorear títulos */
+        .type-qual h2 { color: var(--color-qual); }
+        .type-disc h2 { color: var(--color-disc); }
+        .type-cont h2 { color: var(--color-cont); }
+
+        .concept-box {
+            background-color: #fcfbfd; /* Casi blanco */
+            border-left: 4px solid #d7bde2; /* Borde lila suave */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            color: #566573;
+        }
+
+        .highlight { font-weight: 700; }
+        
+        /* --- VISUALIZADOR DE DATOS CRUDOS --- */
+        .data-viewer {
+            background: #f4f6f7; /* Gris muy claro en vez de negro */
+            color: #5d6d7e;      /* Texto gris */
+            border: 1px solid #e5e8e8;
+            padding: 15px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 100px;
+            overflow-y: auto;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .btn-copy {
+            background: white;
+            border: 1px solid #d5dbdb;
+            color: #5d6d7e;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            float: right;
+            margin-top: -5px;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover { background: #ebf5fb; color: var(--color-primary); border-color: var(--color-primary); }
+
+        /* --- TABLAS --- */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid #f2f3f4;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th {
+            text-align: left;
+            padding: 18px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: white;
+            font-weight: 700;
+        }
+
+        /* Encabezados de colores Pastel */
+        .type-qual th { background-color: var(--color-qual); }
+        .type-disc th { background-color: var(--color-disc); }
+        .type-cont th { background-color: var(--color-cont); }
+
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #f8f9f9;
+            font-size: 0.95rem;
+            color: #566573;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:hover { background-color: #fdfefe; }
+
+        /* Barras visuales dentro de la tabla */
+        .bar-container {
+            width: 100px;
+            height: 10px;
+            background-color: #f2f4f4;
+            border-radius: 5px;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        .bar-fill { height: 100%; border-radius: 5px; opacity: 0.8; }
+        
+        /* Cajas de Interpretación (Estilo Post-it Pastel) */
+        .insight-box {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #fef9e7; /* Amarillo muy pálido */
+            border-radius: 12px;
+            border: 1px solid #f9e79f;
+            font-size: 0.95rem;
+            color: #7d6608;
+        }
+        .insight-title { font-weight: bold; display: block; margin-bottom: 8px; color: #d4ac0d; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+
+        /* Estilo para las cajas de estadísticas rápidas */
+        .stat-box {
+            background: #fdfefe; 
+            padding: 15px; 
+            border-radius: 10px; 
+            border: 1px solid #eaecee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            color: #566573;
+        }
+
+        footer { text-align: center; color: #aab7b8; font-size: 0.9rem; margin-top: 50px;}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Estadística y Probabilidad</h1>
+        <p>Ejemplos de tipos de datos</p>
+    </header>
+
+    <div class="container">
+
+        <article class="card type-qual">
+            <h2>🟣 Datos Cualitativos (Categóricos)</h2>
+            
+            <div class="concept-box">
+                <p><strong>¿Cómo identificarlos?</strong> Son etiquetas o nombres. No son números matemáticos (no puedes restar "Rojo" menos "Azul").</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Nominal:</strong> Sin orden (Ej. Marcas de auto, Colores).</li>
+                    <li><strong>Ordinal:</strong> Con jerarquía (Ej. Estrellas de hotel, Rango militar).</li>
+                </ul>
+            </div>
+
+            <h3>Ejemplo: Red Social Favorita</h3>
+            <p>Imagina que preguntamos a <strong>100 estudiantes</strong> cuál es la app que más usan.</p>
+            
+            <div class="data-viewer">
+                <button class="btn-copy" onclick="copyData('raw-qual')">Copiar</button>
+                <div id="raw-qual">Generando...</div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoría (Red Social)</th>
+                            <th>Frecuencia (fi)</th>
+                            <th>Gráfico Visual</th>
+                            <th>Porcentaje (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-qual"></tbody>
+                </table>
+            </div>
+
+            <div class="insight-box">
+                <span class="insight-title">💡 Interpretación de los datos</span>
+                <span id="insight-qual">Calculando...</span>
+            </div>
+        </article>
+
+
+        <article class="card type-disc">
+            <h2>🟢 Cuantitativos Discretos</h2>
+            
+            <div class="concept-box">
+                <p><strong>¿Cómo identificarlos?</strong> Son el resultado de <strong>CONTAR</strong>. Solo aceptan números enteros "saltados".</p>
+                <p style="margin-top:5px; font-size: 0.9rem;"><em>Pista: Pregúntate "¿Puedo tener la mitad?". No puedes tener 1.5 hijos o 2.5 mascotas.</em></p>
+            </div>
+
+            <h3>Ejemplo: Número de Hermanos</h3>
+            <p>Encuesta a <strong>100 personas</strong> sobre cuántos hermanos tienen.</p>
+
+            <div class="data-viewer">
+                <button class="btn-copy" onclick="copyData('raw-disc')">Copiar</button>
+                <div id="raw-disc">Generando...</div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hermanos (xi)</th>
+                            <th>Frecuencia (fi)</th>
+                            <th>Frec. Acumulada (Fi)</th>
+                            <th>Distribución</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-disc"></tbody>
+                </table>
+            </div>
+
+            <div class="insight-box">
+                <span class="insight-title">💡 Interpretación de los datos</span>
+                <span id="insight-disc">Calculando...</span> El promedio y la moda nos indican el tamaño familiar típico en este grupo.
+            </div>
+        </article>
+
+
+        <article class="card type-cont">
+            <h2>🟠 Cuantitativos Continuos</h2>
+            
+            <div class="concept-box">
+                <p><strong>¿Cómo identificarlos?</strong> Son el resultado de <strong>MEDIR</strong>. Pueden tener decimales infinitos dependiendo de la precisión del instrumento.</p>
+                <p style="margin-top:5px; font-size: 0.9rem;"><em>Ejemplos: Estatura (1.75m), Peso (68.4kg), Tiempo (10.45s), Temperatura.</em></p>
+            </div>
+
+            <h3>Ejemplo: Estatura de Estudiantes (cm)</h3>
+            <p>Medición exacta de la altura de <strong>100 estudiantes</strong> universitarios.</p>
+
+            <div class="data-viewer">
+                <button class="btn-copy" onclick="copyData('raw-cont')">Copiar</button>
+                <div id="raw-cont">Generando...</div>
+            </div>
+
+            <div style="display:flex; gap:15px; margin-bottom:15px;">
+                <div class="stat-box">
+                    <strong>Promedio:</strong> <span id="stat-mean">0</span> cm
+                </div>
+                <div class="stat-box">
+                    <strong>Rango:</strong> <span id="stat-range">0 - 0</span> cm
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Intervalo de Altura</th>
+                            <th>Marca Clase (xi)</th>
+                            <th>Frecuencia (fi)</th>
+                            <th>Porcentaje</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-cont"></tbody>
+                </table>
+            </div>
+
+            <div class="insight-box">
+                <span class="insight-title">💡 Interpretación de los datos</span>
+                Observamos una "Curva de Campana" (Normal). La mayoría de las personas están cerca del promedio, y hay muy pocas personas extremadamente bajas o extremadamente altas.
+            </div>
+        </article>
+
+    </div>
+
+    <footer>
+        <p>Luis Osvaldo Rufino Velázquez • 2026</p>
+    </footer>
+
+    <script>
+        // Función para copiar datos
+        function copyData(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("¡Datos copiados al portapapeles!");
+            });
+        }
+
+        // --- 1. GENERADOR DE DATOS CUALITATIVOS ---
+        function renderQualitative() {
+            const apps = ["TikTok", "Instagram", "WhatsApp", "Facebook", "X (Twitter)"];
+            // Probabilidades simuladas (más peso a TikTok/Insta)
+            const weights = [0.35, 0.30, 0.20, 0.10, 0.05]; 
+            let data = [];
+            let counts = {};
+
+            // Inicializar contadores
+            apps.forEach(app => counts[app] = 0);
+
+            // Generar 100 datos
+            for(let i=0; i<100; i++) {
+                let r = Math.random();
+                let acc = 0;
+                for(let j=0; j<apps.length; j++){
+                    acc += weights[j];
+                    if(r <= acc){
+                        data.push(apps[j]);
+                        counts[apps[j]]++;
+                        break;
+                    }
+                }
+            }
+
+            // Renderizar Raw Data
+            document.getElementById('raw-qual').innerText = data.join(', ');
+
+            // Renderizar Tabla
+            const tbody = document.getElementById('table-qual');
+            let maxVal = Math.max(...Object.values(counts));
+            
+            // Ordenar para mejor visualización
+            apps.sort((a,b) => counts[b] - counts[a]);
+
+            apps.forEach(app => {
+                let fi = counts[app];
+                let perc = fi; // Como son 100 datos, fi = %
+                // Barra visual proporcional
+                let width = (fi / maxVal) * 100; 
+                
+                let row = `<tr>
+                    <td><strong>${app}</strong></td>
+                    <td>${fi}</td>
+                    <td>
+                        <div class="bar-container" style="width: 100px;">
+                            <div class="bar-fill" style="width: ${width}%; background-color: var(--color-qual);"></div>
+                        </div>
+                    </td>
+                    <td>${perc}%</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+
+            // Interpretación
+            document.getElementById('insight-qual').innerText = 
+                `La moda (valor más repetido) es ${apps[0]} con ${counts[apps[0]]} estudiantes. Esto indica la tendencia principal del grupo.`;
+        }
+
+
+        // --- 2. GENERADOR DE DATOS DISCRETOS (Hermanos) ---
+        function renderDiscrete() {
+            let data = [];
+            // Probabilidades realistas: 0 (10%), 1 (40%), 2 (30%), 3 (15%), 4+ (5%)
+            for(let i=0; i<100; i++){
+                let r = Math.random();
+                if(r < 0.10) data.push(0);
+                else if(r < 0.50) data.push(1);
+                else if(r < 0.80) data.push(2);
+                else if(r < 0.95) data.push(3);
+                else data.push(4 + Math.floor(Math.random()*2)); // 4 o 5
+            }
+            data.sort((a,b)=>a-b);
+
+            document.getElementById('raw-disc').innerText = data.join(', ');
+
+            // Conteo
+            let counts = {};
+            data.forEach(x => counts[x] = (counts[x]||0)+1);
+
+            const tbody = document.getElementById('table-disc');
+            let Fi = 0; // Acumulada
+            
+            for(let key in counts) {
+                let fi = counts[key];
+                Fi += fi;
+                let width = (fi / 100) * 100; // Escala para barra visual
+                
+                let row = `<tr>
+                    <td><strong>${key}</strong> hermanos</td>
+                    <td>${fi}</td>
+                    <td>${Fi}</td>
+                    <td>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: ${width}px; background-color: var(--color-disc);"></div>
+                        </div>
+                        <small>${fi}%</small>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            }
+
+            // Calcular media simple
+            let sum = data.reduce((a,b)=>a+b,0);
+            let mean = (sum/100).toFixed(1);
+            document.getElementById('insight-disc').innerText = 
+                `En promedio, cada estudiante tiene ${mean} hermanos. Observamos que es raro encontrar familias con más de 3 hermanos en esta muestra.`;
+        }
+
+
+        // --- 3. GENERADOR DE DATOS CONTINUOS (Estatura) ---
+        function renderContinuous() {
+            let data = [];
+            // Generar distribución normal (Box-Muller)
+            // Media: 170cm, Desviación: 8cm
+            for(let i=0; i<100; i++){
+                let u = 0, v = 0;
+                while(u === 0) u = Math.random();
+                while(v === 0) v = Math.random();
+                let z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+                let val = 170 + z * 8;
+                data.push(parseFloat(val.toFixed(1))); // 1 decimal para simular regla
+            }
+            data.sort((a,b)=>a-b);
+
+            document.getElementById('raw-cont').innerText = data.join(' - ');
+            
+            // Estadísticas básicas
+            let min = data[0];
+            let max = data[data.length-1];
+            let sum = data.reduce((a,b)=>a+b,0);
+            document.getElementById('stat-mean').innerText = (sum/100).toFixed(1);
+            document.getElementById('stat-range').innerText = `${min} - ${max}`;
+
+            // Crear intervalos (bins)
+            // Vamos de 150 a 190 en pasos de 5
+            const bins = [
+                {min: 150, max: 155},
+                {min: 155, max: 160},
+                {min: 160, max: 165},
+                {min: 165, max: 170},
+                {min: 170, max: 175},
+                {min: 175, max: 180},
+                {min: 180, max: 185},
+                {min: 185, max: 200} // El último atrapa los muy altos
+            ];
+
+            const tbody = document.getElementById('table-cont');
+            
+            bins.forEach(bin => {
+                // Contar cuántos caen en este rango
+                let count = data.filter(x => x >= bin.min && x < bin.max).length;
+                let marcaClase = (bin.min + bin.max) / 2;
+                
+                // Barra visual
+                // Asumimos que el max count raramente pasará de 30 para la escala visual
+                let width = Math.min((count / 30) * 100, 100); 
+
+                if(count > 0) { // Solo mostrar intervalos con datos
+                    let row = `<tr>
+                        <td>[${bin.min} - ${bin.max}) cm</td>
+                        <td>${marcaClase}</td>
+                        <td>${count}</td>
+                        <td style="display:flex; align-items:center;">
+                            <div class="bar-container">
+                                <div class="bar-fill" style="width: ${width}%; background-color: var(--color-cont);"></div>
+                            </div>
+                            <span>${count}%</span>
+                        </td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                }
+            });
+        }
+
+        // Ejecutar todo al cargar
+        window.onload = function() {
+            renderQualitative();
+            renderDiscrete();
+            renderContinuous();
+        };
+
+    </script>
+</body>
+</html>
