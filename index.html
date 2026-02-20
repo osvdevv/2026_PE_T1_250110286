@@ -1,1 +1,151 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadística y Probabilidad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Estadística y Probabilidad Tema 1</h1>
+        <p>Conceptos fundamentales y aplicaciones prácticas mediante tablas de frecuencias.</p>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>Conceptos Básicos: Tipos de Datos</h2>
+            <div class="definitions">
+                <article>
+                    <h3>1. Datos Cuantitativos Discretos</h3>
+                    <p>Son aquellos que toman valores numéricos aislados o enteros. Representan conteos y no admiten valores intermedios (fraccionarios o decimales) entre dos valores consecutivos. <strong>Ejemplo:</strong> El número de hijos en una familia, la cantidad de automóviles en un estacionamiento.</p>
+                </article>
+                <article>
+                    <h3>2. Datos Cuantitativos Continuos</h3>
+                    <p>Son aquellos que pueden tomar cualquier valor numérico dentro de un intervalo específico, admitiendo decimales. Generalmente provienen de mediciones. <strong>Ejemplo:</strong> El peso de una persona (ej. 65.4 kg), el tiempo que tarda un corredor en una carrera, la estatura.</p>
+                </article>
+                <article>
+                    <h3>3. Datos Cualitativos (Categóricos)</h3>
+                    <p>Son aquellos que describen cualidades, características o categorías y no se expresan numéricamente (aunque se les asigne un código). Pueden ser nominales (sin orden) u ordinales (con orden jerárquico). <strong>Ejemplo:</strong> Color de ojos, estado civil, marca de teléfono celular.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Ejemplo 1: Datos Cuantitativos Discretos</h2>
+            <p class="problem-statement"><strong>Contexto:</strong> Se realizó una encuesta a 100 familias de una comunidad para conocer la cantidad de hijos que tienen. Los datos obtenidos son los siguientes (n=100):</p>
+            <div class="raw-data">
+                0, 1, 2, 1, 0, 3, 1, 2, 0, 1, 4, 1, 2, 0, 1, 1, 3, 2, 1, 0, 0, 1, 2, 1, 5, 0, 1, 2, 3, 1, 0, 1, 2, 1, 0, 4, 1, 2, 1, 0, 3, 1, 2, 1, 0, 0, 1, 2, 1, 3, 0, 1, 2, 1, 0, 4, 1, 2, 1, 0, 5, 1, 2, 1, 0, 3, 1, 2, 1, 0, 0, 1, 2, 1, 3, 0, 1, 2, 1, 0, 4, 1, 2, 1, 0, 3, 1, 2, 1, 0, 0, 1, 2, 1, 3, 0, 1, 4, 1, 4
+            </div>
+            
+            <table>
+                <caption>Tabla de Frecuencias: Número de Hijos (n=100)</caption>
+                <thead>
+                    <tr>
+                        <th>Clase (Núm. Hijos)</th>
+                        <th>Frecuencia Absoluta (f<sub>i</sub>)</th>
+                        <th>Frecuencia Relativa (h<sub>i</sub>)</th>
+                        <th>Frecuencia Acumulada (F<sub>i</sub>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0</td><td>25</td><td>0.25</td><td>25</td></tr>
+                    <tr><td>1</td><td>35</td><td>0.35</td><td>60</td></tr>
+                    <tr><td>2</td><td>20</td><td>0.20</td><td>80</td></tr>
+                    <tr><td>3</td><td>12</td><td>0.12</td><td>92</td></tr>
+                    <tr><td>4</td><td>6</td><td>0.06</td><td>98</td></tr>
+                    <tr><td>5</td><td>2</td><td>0.02</td><td>100</td></tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total</th>
+                        <th>100</th>
+                        <th>1.00</th>
+                        <th>-</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2>Ejemplo 2: Datos Cuantitativos Continuos</h2>
+            <p class="problem-statement"><strong>Contexto:</strong> Se cronometró el tiempo exacto (en minutos) que tardaron 100 estudiantes universitarios en resolver un examen de matemáticas. Los tiempos van desde los 30 hasta los 90 minutos (n=100).</p>
+            <div class="raw-data">
+                32.5, 41.2, 55.4, 68.1, 72.3, 85.0, 38.1, 45.6, 51.2, 62.4, 31.0, 48.9, 58.7, 65.3, 75.1, 35.4, 42.8, 53.6, 61.9, 81.2, 39.5, 49.1, 56.8, 67.2, 78.5, 33.2, 44.4, 59.9, 69.1, 88.4, 36.7, 47.3, 52.1, 64.5, 71.6, 30.8, 40.5, 54.2, 63.8, 82.7, 34.9, 46.2, 57.5, 66.4, 76.9, 37.8, 43.1, 50.4, 60.7, 86.3, 41.5, 55.9, 68.6, 73.2, 89.1, 45.8, 51.7, 62.9, 79.4, 83.5, 49.3, 58.2, 65.8, 74.7, 80.6, 42.1, 53.9, 61.4, 77.8, 84.9, 48.6, 56.3, 67.9, 70.5, 87.2, 44.7, 52.5, 64.1, 72.8, 81.9, 47.9, 59.4, 69.6, 75.5, 85.8, 40.2, 54.8, 63.3, 78.1, 82.4, 46.5, 57.1, 66.8, 71.9, 86.7, 43.6, 50.9, 60.2, 76.4, 88.9, 55.1, 68.3, 74.2, 84.1, 52.8
+            </div>
+
+            <table>
+                <caption>Tabla de Frecuencias: Tiempo en el Examen (n=100)</caption>
+                <thead>
+                    <tr>
+                        <th>Clase</th>
+                        <th>Límite Inferior (L<sub>i</sub>)</th>
+                        <th>Límite Superior (L<sub>s</sub>)</th>
+                        <th>Marca de Clase (x<sub>i</sub>)</th>
+                        <th>Frec. Absoluta (f<sub>i</sub>)</th>
+                        <th>Frec. Relativa (h<sub>i</sub>)</th>
+                        <th>Frec. Acumulada (F<sub>i</sub>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>30</td><td>40</td><td>35</td><td>10</td><td>0.10</td><td>10</td></tr>
+                    <tr><td>2</td><td>40</td><td>50</td><td>45</td><td>15</td><td>0.15</td><td>25</td></tr>
+                    <tr><td>3</td><td>50</td><td>60</td><td>55</td><td>30</td><td>0.30</td><td>55</td></tr>
+                    <tr><td>4</td><td>60</td><td>70</td><td>65</td><td>25</td><td>0.25</td><td>80</td></tr>
+                    <tr><td>5</td><td>70</td><td>80</td><td>75</td><td>12</td><td>0.12</td><td>92</td></tr>
+                    <tr><td>6</td><td>80</td><td>90</td><td>85</td><td>8</td><td>0.08</td><td>100</td></tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4">Total</th>
+                        <th>100</th>
+                        <th>1.00</th>
+                        <th>-</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2>Ejemplo 3: Datos Cualitativos</h2>
+            <p class="problem-statement"><strong>Contexto:</strong> Se preguntó a 100 jóvenes cuál es su marca de teléfono celular principal. Las respuestas se agruparon en 5 categorías de marcas (n=100).</p>
+            <div class="raw-data">
+                Apple, Samsung, Xiaomi, Motorola, Apple, Samsung, Huawei, Apple, Xiaomi, Motorola, Apple, Samsung, Xiaomi, Apple, Apple, Samsung, Motorola, Apple, Huawei, Samsung, Apple, Xiaomi, Samsung, Apple, Motorola, Samsung, Xiaomi, Apple, Huawei, Apple, Samsung, Xiaomi, Apple, Motorola, Apple, Samsung, Apple, Samsung, Xiaomi, Apple, Apple, Samsung, Motorola, Apple, Huawei, Samsung, Apple, Xiaomi, Samsung, Apple, Apple, Samsung, Xiaomi, Motorola, Apple, Samsung, Xiaomi, Apple, Apple, Samsung, Apple, Xiaomi, Samsung, Motorola, Apple, Samsung, Apple, Xiaomi, Apple, Samsung, Apple, Motorola, Samsung, Xiaomi, Apple, Samsung, Apple, Xiaomi, Apple, Samsung, Huawei, Apple, Samsung, Xiaomi, Apple, Samsung, Apple, Motorola, Samsung, Xiaomi, Apple, Samsung, Apple, Xiaomi, Apple, Samsung, Xiaomi, Apple, Samsung, Apple
+            </div>
+
+            <table>
+                <caption>Tabla de Frecuencias: Marca de Celular (n=100)</caption>
+                <thead>
+                    <tr>
+                        <th>Clase (Marca)</th>
+                        <th>Frecuencia Absoluta (f<sub>i</sub>)</th>
+                        <th>Frecuencia Relativa (h<sub>i</sub>)</th>
+                        <th>Frecuencia Acumulada (F<sub>i</sub>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Apple</td><td>35</td><td>0.35</td><td>35</td></tr>
+                    <tr><td>Samsung</td><td>30</td><td>0.30</td><td>65</td></tr>
+                    <tr><td>Xiaomi</td><td>20</td><td>0.20</td><td>85</td></tr>
+                    <tr><td>Motorola</td><td>10</td><td>0.10</td><td>95</td></tr>
+                    <tr><td>Huawei</td><td>5</td><td>0.05</td><td>100</td></tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total</th>
+                        <th>100</th>
+                        <th>1.00</th>
+                        <th>-</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>250110286@itsoeh.edu.mx - osvdevv</p>
+    </footer>
+
+</body>
+</html>
