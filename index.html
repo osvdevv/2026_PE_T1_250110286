@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estadística y Probabilidad</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <header>
@@ -15,47 +17,124 @@
 
     <main>
         <section class="card">
-            <h2>Conceptos Básicos: Tipos de Datos</h2>
+            <h2>Conceptos Estadísticos: Tipos de Datos</h2>
             <div class="definitions">
+
                 <article>
                     <h3>1. Datos Cuantitativos Discretos</h3>
-                    <p>Son aquellos que toman valores numéricos aislados o enteros. Representan conteos y no admiten valores intermedios (fraccionarios o decimales) entre dos valores consecutivos. <strong>Ejemplo:</strong> El número de hijos en una familia, la cantidad de automóviles en un estacionamiento.</p>
+                    <p>
+                        Los datos cuantitativos discretos representan variables numéricas que pertenecen a un conjunto
+                        <strong>finito o infinito numerable</strong>. Su naturaleza técnica se basa en el proceso de
+                        <strong>conteo</strong>, lo que implica que los valores se presentan en unidades indivisibles y
+                        aisladas.
+                        <br><br>
+                        Matemáticamente, estos datos no admiten valores intermedios o fraccionarios entre dos puntos
+                        consecutivos de su escala; existe un "salto" lógico entre una observación y la siguiente. Son
+                        fundamentales en modelos de probabilidad como la Distribución de Poisson o Binomial, donde la
+                        unidad de medida no puede ser segmentada sin perder su significado original.
+                        <br><br>
+                        <strong>Ejemplos Reales:</strong> El número de hijos en una familia (no es posible tener 2.4
+                        hijos), la cantidad de servidores activos en un centro de datos, o el número de transacciones
+                        procesadas por un sistema bancario en un ciclo determinado.
+                    </p>
                 </article>
+
                 <article>
                     <h3>2. Datos Cuantitativos Continuos</h3>
-                    <p>Son aquellos que pueden tomar cualquier valor numérico dentro de un intervalo específico, admitiendo decimales. Generalmente provienen de mediciones. <strong>Ejemplo:</strong> El peso de una persona (ej. 65.4 kg), el tiempo que tarda un corredor en una carrera, la estatura.</p>
+                    <p>
+                        Los datos cuantitativos continuos son variables que pueden adoptar <strong>cualquier valor real
+                            dentro de un intervalo específico</strong>. A diferencia de los discretos, estos datos se
+                        originan mediante procesos de <strong>medición</strong> y su precisión está limitada únicamente
+                        por la resolución del instrumento utilizado.
+                        <br><br>
+                        Desde la perspectiva del cálculo, entre dos valores cualesquiera siempre existe una cantidad
+                        infinita de valores posibles (decimales infinitesimales). En la práctica estadística, debido a
+                        esta continuidad, la probabilidad de que una variable tome un valor exacto es técnicamente cero,
+                        por lo que su análisis se realiza mediante rangos o intervalos de clase.
+                        <br><br>
+                        <strong>Ejemplos Reales:</strong> El peso exacto de una persona (ej. 65.423 kg), el tiempo de
+                        latencia de una conexión de red medido en milisegundos, la temperatura ambiental capturada por
+                        un sensor de precisión, o la estatura de un individuo.
+                    </p>
                 </article>
+
                 <article>
                     <h3>3. Datos Cualitativos (Categóricos)</h3>
-                    <p>Son aquellos que describen cualidades, características o categorías y no se expresan numéricamente (aunque se les asigne un código). Pueden ser nominales (sin orden) u ordinales (con orden jerárquico). <strong>Ejemplo:</strong> Color de ojos, estado civil, marca de teléfono celular.</p>
+                    <p>
+                        Los datos cualitativos, también conocidos como categóricos, describen <strong>atributos,
+                            cualidades o propiedades no numéricas</strong> de un elemento. Su función primordial es
+                        clasificar la información en categorías mutuamente excluyentes. Aunque pueden ser codificados
+                        mediante números para facilitar su procesamiento en bases de datos, dichos números carecen de
+                        propiedades aritméticas (no se pueden sumar ni promediar de forma lógica).
+                        <br><br>
+                        Estos se subclasifican en dos niveles de medición:
+                        <strong>Nominales</strong>, donde las categorías no poseen un orden intrínseco (como el grupo
+                        sanguíneo), y
+                        <strong>Ordinales</strong>, donde existe una jerarquía o progresión lógica (como los niveles de
+                        satisfacción del cliente o rangos militares).
+                        <br><br>
+                        <strong>Ejemplos Reales:</strong> El color de ojos, el estado civil, la marca de un dispositivo
+                        móvil, o el nivel de urgencia de un ticket de soporte técnico (Bajo, Medio, Alto).
+                    </p>
                 </article>
+
             </div>
         </section>
 
-        <section class="card">
+        <<section class="card">
             <h2>Ejemplo 1: Datos Cuantitativos Discretos</h2>
-            <p class="problem-statement"><strong>Contexto:</strong> Se realizó una encuesta a 100 familias de una comunidad para conocer la cantidad de hijos que tienen. Los datos obtenidos son los siguientes (n=100):</p>
+            <p class="problem-statement"><strong>Contexto:</strong> Se realizó un monitoreo del consumo eléctrico diario
+                (redondeado a kWh) en una planta de procesamiento durante 100 días hábiles para analizar la eficiencia
+                operativa. Los datos obtenidos son los siguientes (n=100):</p>
             <div class="raw-data">
-                0, 1, 2, 1, 0, 3, 1, 2, 0, 1, 4, 1, 2, 0, 1, 1, 3, 2, 1, 0, 0, 1, 2, 1, 5, 0, 1, 2, 3, 1, 0, 1, 2, 1, 0, 4, 1, 2, 1, 0, 3, 1, 2, 1, 0, 0, 1, 2, 1, 3, 0, 1, 2, 1, 0, 4, 1, 2, 1, 0, 5, 1, 2, 1, 0, 3, 1, 2, 1, 0, 0, 1, 2, 1, 3, 0, 1, 2, 1, 0, 4, 1, 2, 1, 0, 3, 1, 2, 1, 0, 0, 1, 2, 1, 3, 0, 1, 4, 1, 4
+                10, 12, 11, 12, 10, 13, 11, 12, 10, 11, 14, 11, 12, 10, 11, 11, 13, 12, 11, 10,
+                10, 11, 12, 11, 10, 10, 11, 12, 11, 13, 11, 10, 12, 11, 10, 14, 11, 12, 11, 10,
+                10, 11, 12, 11, 10, 13, 11, 12, 11, 10, 10, 11, 12, 11, 10, 13, 11, 12, 11, 10,
+                10, 11, 12, 11, 14, 11, 12, 11, 10, 10, 11, 12, 11, 13, 11, 12, 11, 10, 10, 11,
+                12, 11, 13, 11, 14, 11, 14, 10, 11, 12, 11, 10, 10, 11, 12, 11, 13, 11, 14, 14
             </div>
-            
+
             <table>
-                <caption>Tabla de Frecuencias: Número de Hijos (n=100)</caption>
+                <caption>Tabla de Frecuencias: Consumo de Energía (n=100)</caption>
                 <thead>
                     <tr>
-                        <th>Clase (Núm. Hijos)</th>
-                        <th>Frecuencia Absoluta (f<sub>i</sub>)</th>
-                        <th>Frecuencia Relativa (h<sub>i</sub>)</th>
-                        <th>Frecuencia Acumulada (F<sub>i</sub>)</th>
+                        <th>Clase (kWh)</th>
+                        <th>Frecuencia Absoluta (fa)</th>
+                        <th>Frecuencia Relativa (fr)</th>
+                        <th>Frecuencia Acumulada (facum)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>0</td><td>25</td><td>0.25</td><td>25</td></tr>
-                    <tr><td>1</td><td>35</td><td>0.35</td><td>60</td></tr>
-                    <tr><td>2</td><td>20</td><td>0.20</td><td>80</td></tr>
-                    <tr><td>3</td><td>12</td><td>0.12</td><td>92</td></tr>
-                    <tr><td>4</td><td>6</td><td>0.06</td><td>98</td></tr>
-                    <tr><td>5</td><td>2</td><td>0.02</td><td>100</td></tr>
+                    <tr>
+                        <td>10</td>
+                        <td>25</td>
+                        <td>0.25</td>
+                        <td>0.25</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>35</td>
+                        <td>0.35</td>
+                        <td>0.60</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>20</td>
+                        <td>0.20</td>
+                        <td>0.80</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>10</td>
+                        <td>0.10</td>
+                        <td>0.90</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>10</td>
+                        <td>0.10</td>
+                        <td>1.00</td>
+                    </tr>
                 </tbody>
                 <tfoot>
                     <tr>
@@ -66,8 +145,8 @@
                     </tr>
                 </tfoot>
             </table>
-            </table>
-            
+            </section>
+
             <div class="charts-gallery">
                 <figure class="chart-item">
                     <img src="imagenes/Histograma_ejemplo1.png" alt="Histograma de Frecuencia Relativa">
@@ -85,47 +164,125 @@
                     <img src="imagenes/Pastel_ejemplo1.png" alt="Diagrama de Pastel">
                 </figure>
             </div>
-        </section>
-        </section>
+            </section>
+            </section>
 
-        <section class="card">
-            <h2>Ejemplo 2: Datos Cuantitativos Continuos</h2>
-            <p class="problem-statement"><strong>Contexto:</strong> Se cronometró el tiempo exacto (en minutos) que tardaron 100 estudiantes universitarios en resolver un examen de matemáticas. Los tiempos van desde los 30 hasta los 90 minutos (n=100).</p>
-            <div class="raw-data">
-                32.5, 41.2, 55.4, 68.1, 72.3, 85.0, 38.1, 45.6, 51.2, 62.4, 31.0, 48.9, 58.7, 65.3, 75.1, 35.4, 42.8, 53.6, 61.9, 81.2, 39.5, 49.1, 56.8, 67.2, 78.5, 33.2, 44.4, 59.9, 69.1, 88.4, 36.7, 47.3, 52.1, 64.5, 71.6, 30.8, 40.5, 54.2, 63.8, 82.7, 34.9, 46.2, 57.5, 66.4, 76.9, 37.8, 43.1, 50.4, 60.7, 86.3, 41.5, 55.9, 68.6, 73.2, 89.1, 45.8, 51.7, 62.9, 79.4, 83.5, 49.3, 58.2, 65.8, 74.7, 80.6, 42.1, 53.9, 61.4, 77.8, 84.9, 48.6, 56.3, 67.9, 70.5, 87.2, 44.7, 52.5, 64.1, 72.8, 81.9, 47.9, 59.4, 69.6, 75.5, 85.8, 40.2, 54.8, 63.3, 78.1, 82.4, 46.5, 57.1, 66.8, 71.9, 86.7, 43.6, 50.9, 60.2, 76.4, 88.9, 55.1, 68.3, 74.2, 84.1, 52.8
-            </div>
+            <section class="card">
+                <h2>Ejemplo 2: Datos Cuantitativos Continuos</h2>
+                <p class="problem-statement"><strong>Contexto:</strong> Se registró el tiempo exacto (en minutos) que un
+                    equipo de soporte técnico tardó en resolver 100 incidencias de software críticas. El objetivo es
+                    optimizar los tiempos de respuesta para mejorar el nivel de servicio (n=100).</p>
+                <div class="raw-data">
+                    15.4, 18.1, 22.5, 25.0, 16.7, 30.2, 34.8, 38.9, 40.1, 42.4, 19.3, 23.6, 27.8, 32.1, 36.5, 41.2,
+                    45.6, 48.0, 50.3, 52.1,
+                    17.8, 21.2, 26.4, 29.9, 33.2, 37.7, 42.1, 46.4, 49.8, 53.5, 20.5, 24.1, 28.5, 31.6, 35.9, 40.8,
+                    44.3, 48.7, 51.2, 55.4,
+                    22.1, 25.7, 30.0, 33.8, 38.2, 43.0, 47.1, 50.9, 54.2, 58.3, 23.9, 27.2, 31.5, 35.1, 39.6, 44.5,
+                    49.0, 52.8, 56.5, 60.2,
+                    26.2, 29.4, 32.8, 36.9, 41.5, 45.8, 50.1, 53.9, 57.8, 62.1, 28.0, 31.2, 34.5, 38.3, 43.2, 47.5,
+                    51.4, 55.7, 59.1, 64.5,
+                    30.5, 33.1, 36.8, 40.4, 45.1, 49.4, 53.2, 57.1, 61.5, 66.8, 32.7, 35.6, 39.1, 43.9, 48.4, 52.7,
+                    56.9, 60.8, 65.2, 70.0
+                </div>
 
-            <table>
-                <caption>Tabla de Frecuencias: Tiempo en el Examen (n=100)</caption>
-                <thead>
-                    <tr>
-                        <th>Clase</th>
-                        <th>Límite Inferior (L<sub>i</sub>)</th>
-                        <th>Límite Superior (L<sub>s</sub>)</th>
-                        <th>Marca de Clase (x<sub>i</sub>)</th>
-                        <th>Frec. Absoluta (f<sub>i</sub>)</th>
-                        <th>Frec. Relativa (h<sub>i</sub>)</th>
-                        <th>Frec. Acumulada (F<sub>i</sub>)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>1</td><td>30</td><td>40</td><td>35</td><td>10</td><td>0.10</td><td>10</td></tr>
-                    <tr><td>2</td><td>40</td><td>50</td><td>45</td><td>15</td><td>0.15</td><td>25</td></tr>
-                    <tr><td>3</td><td>50</td><td>60</td><td>55</td><td>30</td><td>0.30</td><td>55</td></tr>
-                    <tr><td>4</td><td>60</td><td>70</td><td>65</td><td>25</td><td>0.25</td><td>80</td></tr>
-                    <tr><td>5</td><td>70</td><td>80</td><td>75</td><td>12</td><td>0.12</td><td>92</td></tr>
-                    <tr><td>6</td><td>80</td><td>90</td><td>85</td><td>8</td><td>0.08</td><td>100</td></tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="4">Total</th>
-                        <th>100</th>
-                        <th>1.00</th>
-                        <th>-</th>
-                    </tr>
-                </tfoot>
-            </table>
-             <div class="charts-gallery">
+                <table>
+                    <caption>Tabla de Frecuencias: Tiempo de Resolución de Incidencias (n=100)</caption>
+                    <thead>
+                        <tr>
+                            <th>Clase</th>
+                            <th>Límite Inferior (Li)</th>
+                            <th>Límite Superior (Ls)</th>
+                            <th>Marca de Clase</th>
+                            <th>Frec. Absoluta (fa)</th>
+                            <th>Frec. Relativa (fr)</th>
+                            <th>Frec. Acumulada (facum)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>15.0</td>
+                            <td>21.9</td>
+                            <td>18.45</td>
+                            <td>8</td>
+                            <td>0.08</td>
+                            <td>0.08</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>21.9</td>
+                            <td>28.8</td>
+                            <td>25.35</td>
+                            <td>12</td>
+                            <td>0.12</td>
+                            <td>0.20</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>28.8</td>
+                            <td>35.7</td>
+                            <td>32.25</td>
+                            <td>18</td>
+                            <td>0.18</td>
+                            <td>0.38</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>35.7</td>
+                            <td>42.6</td>
+                            <td>39.15</td>
+                            <td>22</td>
+                            <td>0.22</td>
+                            <td>0.60</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>42.6</td>
+                            <td>49.5</td>
+                            <td>46.05</td>
+                            <td>16</td>
+                            <td>0.16</td>
+                            <td>0.76</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>49.5</td>
+                            <td>56.4</td>
+                            <td>52.95</td>
+                            <td>14</td>
+                            <td>0.14</td>
+                            <td>0.90</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>56.4</td>
+                            <td>63.3</td>
+                            <td>59.85</td>
+                            <td>7</td>
+                            <td>0.07</td>
+                            <td>0.97</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>63.3</td>
+                            <td>70.2</td>
+                            <td>66.75</td>
+                            <td>3</td>
+                            <td>0.03</td>
+                            <td>1.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="4">Total</th>
+                            <th>100</th>
+                            <th>1.00</th>
+                            <th>-</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+            <div class="charts-gallery">
                 <figure class="chart-item">
                     <img src="imagenes/Histograma_ejemplo2.png" alt="Histograma de Frecuencia Relativa">
                 </figure>
@@ -142,47 +299,135 @@
                     <img src="imagenes/Pastel_ejemplo2.png" alt="Diagrama de Pastel">
                 </figure>
             </div>
-        </section>
+            </section>
 
-        <section class="card">
-            <h2>Ejemplo 3: Datos Cualitativos</h2>
-            <p class="problem-statement"><strong>Contexto:</strong> Se preguntó a 100 jóvenes cuál es su marca de teléfono celular principal. Las respuestas se agruparon en 5 categorías de marcas (n=100).</p>
-            <div class="raw-data">
-                Apple, Samsung, Xiaomi, Motorola, Apple, Samsung, Huawei, Apple, Xiaomi, Motorola, Apple, Samsung, Xiaomi, Apple, Apple, Samsung, Motorola, Apple, Huawei, Samsung, Apple, Xiaomi, Samsung, Apple, Motorola, Samsung, Xiaomi, Apple, Huawei, Apple, Samsung, Xiaomi, Apple, Motorola, Apple, Samsung, Apple, Samsung, Xiaomi, Apple, Apple, Samsung, Motorola, Apple, Huawei, Samsung, Apple, Xiaomi, Samsung, Apple, Apple, Samsung, Xiaomi, Motorola, Apple, Samsung, Xiaomi, Apple, Apple, Samsung, Apple, Xiaomi, Samsung, Motorola, Apple, Samsung, Apple, Xiaomi, Apple, Samsung, Apple, Motorola, Samsung, Xiaomi, Apple, Samsung, Apple, Xiaomi, Apple, Samsung, Huawei, Apple, Samsung, Xiaomi, Apple, Samsung, Apple, Motorola, Samsung, Xiaomi, Apple, Samsung, Apple, Xiaomi, Apple, Samsung, Xiaomi, Apple, Samsung, Apple
+            <section class="card">
+                <h2>Ejemplo 3: Datos Cualitativos</h2>
+                <p class="problem-statement"><strong>Contexto:</strong> Se realizó una encuesta a 100 empresas de
+                    desarrollo tecnológico para identificar su proveedor principal de servicios en la nube (Cloud
+                    Computing). Las respuestas se agruparon en las 5 plataformas con mayor cuota de mercado (n=100).</p>
+                <div class="raw-data">
+                    AWS, Azure, Google Cloud, IBM Cloud, AWS, Azure, Oracle Cloud, AWS, Google Cloud, IBM Cloud, AWS,
+                    Azure,
+                    Google Cloud, AWS, AWS, Azure, IBM Cloud, AWS, Oracle Cloud, Azure, AWS, Google Cloud, Azure, AWS,
+                    IBM Cloud, Azure, Google Cloud, AWS, Oracle Cloud, AWS, Azure, Google Cloud, AWS, IBM Cloud, AWS,
+                    Azure,
+                    AWS, Azure, Google Cloud, AWS, AWS, Azure, IBM Cloud, AWS, Oracle Cloud, Azure, AWS, Google Cloud,
+                    Azure, AWS, AWS, Azure, Google Cloud, IBM Cloud, AWS, Azure, Google Cloud, AWS, AWS, Azure,
+                    AWS, Google Cloud, Azure, IBM Cloud, AWS, Azure, AWS, Google Cloud, AWS, Azure, AWS, IBM Cloud,
+                    Azure, Google Cloud, AWS, Azure, AWS, Google Cloud, AWS, Azure, Oracle Cloud, AWS, Azure, Google
+                    Cloud,
+                    AWS, Azure, AWS, IBM Cloud, Azure, Google Cloud, AWS, Azure, AWS, Google Cloud, AWS, Azure,
+                    Google Cloud, AWS, Azure, AWS
+                </div>
+
+                <table>
+                    <caption>Tabla de Frecuencias: Proveedor de Servicios Cloud (n=100)</caption>
+                    <thead>
+                        <tr>
+                            <th>Clase (Plataforma)</th>
+                            <th>Frecuencia Absoluta (fa)</th>
+                            <th>Frecuencia Relativa (fr)</th>
+                            <th>Frecuencia Acumulada (facum)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>AWS (Amazon)</td>
+                            <td>35</td>
+                            <td>0.35</td>
+                            <td>0.35</td>
+                        </tr>
+                        <tr>
+                            <td>Azure (Microsoft)</td>
+                            <td>30</td>
+                            <td>0.30</td>
+                            <td>0.65</td>
+                        </tr>
+                        <tr>
+                            <td>Google Cloud</td>
+                            <td>20</td>
+                            <td>0.20</td>
+                            <td>0.85</td>
+                        </tr>
+                        <tr>
+                            <td>IBM Cloud</td>
+                            <td>10</td>
+                            <td>0.10</td>
+                            <td>0.95</td>
+                        </tr>
+                        <tr>
+                            <td>Oracle Cloud</td>
+                            <td>5</td>
+                            <td>0.05</td>
+                            <td>1.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total</th>
+                            <th>100</th>
+                            <th>1.00</th>
+                            <th>-</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+            <div class="charts-gallery">
+                <figure class="chart-item">
+                    <img src="imagenes/Histograma_ejemplo3.png" alt="Histograma de Frecuencia Relativa">
+                </figure>
+                <figure class="chart-item">
+                    <img src="imagenes/Poligono_ejemplo3.png" alt="Polígono de Frecuencias">
+                </figure>
+                <figure class="chart-item">
+                    <img src="imagenes/Barras_ejemplo3.png" alt="Diagrama de Barras Horizontales">
+                </figure>
+                <figure class="chart-item">
+                    <img src="imagenes/Ojiva_ejemplo3.png" alt="Ojiva de Frecuencia Acumulada">
+                </figure>
+                <figure class="chart-item">
+                    <img src="imagenes/Pastel_ejemplo3.png" alt="Diagrama de Pastel">
+                </figure>
             </div>
-
-            <table>
-                <caption>Tabla de Frecuencias: Marca de Celular (n=100)</caption>
-                <thead>
-                    <tr>
-                        <th>Clase (Marca)</th>
-                        <th>Frecuencia Absoluta (f<sub>i</sub>)</th>
-                        <th>Frecuencia Relativa (h<sub>i</sub>)</th>
-                        <th>Frecuencia Acumulada (F<sub>i</sub>)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Apple</td><td>35</td><td>0.35</td><td>35</td></tr>
-                    <tr><td>Samsung</td><td>30</td><td>0.30</td><td>65</td></tr>
-                    <tr><td>Xiaomi</td><td>20</td><td>0.20</td><td>85</td></tr>
-                    <tr><td>Motorola</td><td>10</td><td>0.10</td><td>95</td></tr>
-                    <tr><td>Huawei</td><td>5</td><td>0.05</td><td>100</td></tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Total</th>
-                        <th>100</th>
-                        <th>1.00</th>
-                        <th>-</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </section>
+            </section>
     </main>
 
     <footer>
         <p>250110286@itsoeh.edu.mx - osvdevv</p>
     </footer>
+    <script>
+    document.querySelectorAll('.chart-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.stopPropagation(); // Evita conflictos de clics
+            
+            const isExpanding = !this.classList.contains('is-expanded');
+            
+            // Limpiar cualquier otra imagen abierta primero
+            document.querySelectorAll('.chart-item').forEach(el => el.classList.remove('is-expanded'));
+            
+            if (isExpanding) {
+                this.classList.add('is-expanded');
+                document.body.classList.add('has-expanded-image');
+            } else {
+                document.body.classList.remove('has-expanded-image');
+            }
+        });
+    });
 
+    // Cerrar al hacer clic en cualquier parte del fondo oscuro
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.chart-item').forEach(el => el.classList.remove('is-expanded'));
+        document.body.classList.remove('has-expanded-image');
+    });
+
+    // Cerrar con la tecla Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") {
+            document.querySelectorAll('.chart-item').forEach(el => el.classList.remove('is-expanded'));
+            document.body.classList.remove('has-expanded-image');
+        }
+    });
+</script>
 </body>
 </html>
